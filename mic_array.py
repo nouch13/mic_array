@@ -6,6 +6,7 @@ import threading
 import numpy as np
 from gcc_phat import gcc_phat
 import math
+import datetime
 
 
 SOUND_SPEED = 343.2
@@ -154,7 +155,7 @@ def test_4mic():
     with MicArray(16000, 4, 16000 / 4)  as mic:
         for chunk in mic.read_chunks():
             direction = mic.get_direction(chunk)
-            print(int(direction))
+            print("direction: %.03f" % direction)
 
             if is_quit.is_set():
                 break
