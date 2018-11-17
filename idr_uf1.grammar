@@ -1,0 +1,23 @@
+S          : LAUGH_PATTERNS
+
+## 笑いの音素列パターン
+# A.普通の笑い
+LAUGH_PATTERNS: HA_LOOP
+LAUGH_PATTERNS: A HA_LOOP
+# B.含み笑い
+LAUGH_PATTERNS: U
+LAUGH_PATTERNS: U FU_LOOP
+# C.照れ隠しの笑い
+LAUGH_PATTERNS: E
+LAUGH_PATTERNS: E HE_LOOP
+
+## 「ハ」「フ」「ヘ」は，左再帰でループ定義
+# 「ハ」の繰り返し
+HA_LOOP: HA_LOOP HA
+HA_LOOP: HA
+# 「フ」の繰り返し
+FU_LOOP: FU_LOOP FU
+FU_LOOP: FU
+# 「ヘ」の繰り返し
+HE_LOOP: HE_LOOP HE
+HE_LOOP: HE
