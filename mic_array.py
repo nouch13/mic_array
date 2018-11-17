@@ -160,7 +160,7 @@ def test_4mic():
     with MicArray(16000, 4, 16000 / 4)  as mic:
         for chunk in mic.read_chunks():
             direction = mic.get_direction(chunk)
-            client.publish(topic, direction)
+            client.publish(topic, direction)  # 音声の到来方向をPublishする
             print("direction: %.03f" % direction)
 
             if is_quit.is_set():
