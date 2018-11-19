@@ -29,7 +29,7 @@ def main():
     start_s = 0
     end_s = 0
     try:
-        topic = 'USBMic/laughter'  # publish先のトピック名をここで指定
+        topic = '806/sound/usb_mic/laughter'  # publish先のトピック名をここで指定
         m_client = mqtt.Client(protocol=mqtt.MQTTv311)
         m_client.connect(host, port=1883, keepalive=60)
         data = ''

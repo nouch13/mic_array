@@ -146,7 +146,7 @@ def test_4mic():
 
     host = 'localhost'
     port = 1883
-    topic = 'MicArray/doa'
+    topic = '806/sound/mic_array/doa'
     client = mqtt.Client(protocol=mqtt.MQTTv311)
     client.connect(host, port=port, keepalive=60)
 
