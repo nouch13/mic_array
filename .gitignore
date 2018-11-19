@@ -99,3 +99,10 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# Intellij Idea
+/.idea/
+/tmp/
+/bin/
+*.test
+*.swp
