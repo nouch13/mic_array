@@ -15,7 +15,7 @@
 -gram idr_uf1
 
 ## 音量レベルのしきい値設定
--lv 1000
+-lv 300
 
 -nostrip
 
@@ -24,7 +24,7 @@
 
 # GMMを用いて認識対象外の音を棄却
 -gmm bingmm_demo
--gmmreject "noise"
+-gmmreject "speech,noise"
 
 # 音声区間開始/終了部には無音がないことを前提とする
 #-headmargin 100
@@ -32,4 +32,4 @@
 
 # マイクでのデモを想定しているため，マイク入力を指定
 -input mic
--module
+#-module
