@@ -5,6 +5,7 @@ import re
 import socket
 import numpy as np
 from bs4 import BeautifulSoup
+import paho.mqtt.client as mqtt
 
 def get_laugh_class(snt):
     # 観測された音素列から，笑いの分類結果を導出する
@@ -22,12 +23,15 @@ def get_laugh_class(snt):
 def main():
     host = 'localhost'
     port = 10500
-    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client.connect((host, port))
+    j_client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    j_client.connect((host, port))
 
     start_s = 0
     end_s = 0
     try:
+        topic = 'USBMic/laughter'  # publish先のトピック名をここで指定
+        m_client = mqtt.Client(protocol=mqtt.MQTTv311)
+        m_client.connect(host, port=1883, keepalive=60)
         data = ''
         while 1:
             if '\n.' in data:
@@ -46,11 +50,13 @@ def main():
                     rec_s = datetime.datetime.fromtimestamp(rec_s)  # 普通の時刻に変換
                     rec_s = rec_s.strftime('%H:%M:%S')
                     print('%s %sを検出しました' % (rec_s, get_laugh_class(words)))
+                    m_client.publish(topic, get_laugh_class(words))
                 data = ''
             else:
-                data = data + client.recv(1024).decode(encoding='utf-8')
+                data = data + j_client.recv(1024).decode(encoding='utf-8')
     except KeyboardInterrupt:
-        client.close()
+        j_client.close()
+        m_client.disconnect()
 
 if __name__ == "__main__":
     main()
