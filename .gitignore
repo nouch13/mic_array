@@ -106,3 +106,6 @@ ENV/
 /bin/
 *.test
 *.swp
+
+# Temporary File
+tmp_doa.txt
